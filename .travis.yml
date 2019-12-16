@@ -4,17 +4,6 @@ php:
   - 7.4
   #- nightly
 
-before_install:
-    - printf "\n" | pecl install imagick
-
-addon:
-    apt:
-       update: true
-       packages:
-          - librsvg2-bin
-          - imagemagick
-
-
 install:
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source
