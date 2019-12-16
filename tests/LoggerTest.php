@@ -58,6 +58,35 @@ class LoggerTest extends TestCase
         $this->assertEquals("Completing...DONE", $this->getTargetData());
     }
 
+    public function testCase1() {
+        $logger = new Logger($this->target);
+        $logger->begin('[');
+            $logger->begin('[');
+            $logger->end("]");
+            $logger->begin('[');
+            $logger->end("]");
+        $logger->end("]");
+        $logger->begin('[');
+        $logger->end("]");
+
+        $this->assertEquals("[\n  []\n  []\n]\n[]", $this->getTargetData());
+    }
+
+    public function testCase2() {
+        $logger = new Logger($this->target);
+        $logger->begin('[');
+        $logger->begin('[');
+        $logger->end("]\n");
+        $logger->begin('[');
+        $logger->end("]\n");
+        $logger->end("]\n");
+        $logger->begin('[');
+        $logger->end("]\n");
+
+        $this->assertEquals("[\n  []\n  []\n]\n[]", $this->getTargetData());
+    }
+
+
     public function testsDefaultTarget() {
         $logger = new Logger();
         $this->assertEquals(STDOUT, $logger->getDefaultTarget());
