@@ -58,4 +58,9 @@ class LoggerTest extends TestCase
         $this->assertEquals("Completing...DONE", $this->getTargetData());
     }
 
+    public function testsDefaultTarget() {
+        $logger = new Logger();
+        $this->assertEquals(STDOUT, $logger->getDefaultTarget());
+    }
+
 }
