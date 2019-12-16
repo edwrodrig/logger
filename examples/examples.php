@@ -6,7 +6,7 @@ include_once __DIR__ . '/../vendor/autoload.php';
 use edwrodrig\logger\Logger;
 
 //YOU MUST IMPLEMENT A CONTEXT
-$logger = new Logger(STDOUT);
+$logger = new Logger();
 
 //Nesting
 $logger

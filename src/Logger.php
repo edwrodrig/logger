@@ -14,7 +14,7 @@ class Logger
     /**
      * @var resource
      */
-    protected $target;
+    protected $target = STDOUT;
 
     /**
      * The current nesting level
@@ -52,16 +52,22 @@ class Logger
     }
 
     /**
+     * The default
+     * @return resource
+     */
+    public function getDefaultTarget() {
+        return STDOUT;
+    }
+
+    /**
      * Set the target resource of the logger.
      *
      * Where the logs will be printed.
      * @api
      * @param null|resource $target If is null then the target is set to {@see STDOUT}
      */
-    public function setTarget($target = null) {
-        if ( is_null($target) ) {
-            $this->target = STDOUT;
-        } else {
+    public function setTarget($target) {
+        if ( is_resource($target) ) {
             $this->target = $target;
         }
     }
